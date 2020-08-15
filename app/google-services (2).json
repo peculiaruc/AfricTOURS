@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "186831416670",
+    "firebase_url": "https://africtours-5a0f8.firebaseio.com",
+    "project_id": "africtours-5a0f8",
+    "storage_bucket": "africtours-5a0f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186831416670:android:9e20cce31d27f5108f73cf",
+        "android_client_info": {
+          "package_name": "com.pecpaker.africtours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186831416670-vefppdnl7br9b8ob2ja55n11o6sbu8l2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pecpaker.africtours",
+            "certificate_hash": "21916bbf07e786806c51b96617ce916acad2d420"
+          }
+        },
+        {
+          "client_id": "186831416670-6fm2raehb1g4h8cj6a9230l2nlejsis4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-My-RGIlzaMenXC5MYJIPSJeq8wi_ny8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186831416670-6fm2raehb1g4h8cj6a9230l2nlejsis4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
