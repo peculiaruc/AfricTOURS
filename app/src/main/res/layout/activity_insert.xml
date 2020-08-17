@@ -7,89 +7,61 @@
     android:background="@color/colorAccent"
     tools:context=".ui.InsertActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInput_title"
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/deal_title"
+        android:autofillHints=""
+        android:background="#ffffff"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        style="@style/Widget.Design.TextInputLayout"
-        android:hint="@string/deal_title"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:autofillHints=""
+        android:hint="@string/description"
         android:background="#ffffff"
-        android:layout_marginStart="@dimen/layout_margin_standard"
-        android:layout_marginLeft="@dimen/layout_margin_standard"
-        android:layout_marginEnd="@dimen/layout_margin_standard"
-        android:layout_marginRight="@dimen/layout_margin_standard"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
+        android:inputType="textPersonName"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Deal Title"
-            android:textColor="#000000"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInput_prize"
+    <EditText
+        android:id="@+id/editTextPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        style="@style/Widget.Design.TextInputLayout"
-        android:layout_marginStart="@dimen/layout_margin_standard"
-        android:layout_marginLeft="@dimen/layout_margin_standard"
-        android:layout_marginEnd="@dimen/layout_margin_standard"
-        android:layout_marginRight="@dimen/layout_margin_standard"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:autofillHints=""
         android:hint="@string/price"
         android:background="#ffffff"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInput_title">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Price"
-            android:textColor="#000000"
-            android:inputType="numberDecimal"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:id="@+id/textInput_description"
-        style="@style/Widget.Design.TextInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/layout_margin_standard"
-        android:layout_marginLeft="@dimen/layout_margin_standard"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/layout_margin_standard"
-        android:layout_marginRight="@dimen/layout_margin_standard"
-        android:background="#ffffff"
-        android:hint="@string/description"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxCornerRadiusTopStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInput_prize">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            tools:text="Description" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

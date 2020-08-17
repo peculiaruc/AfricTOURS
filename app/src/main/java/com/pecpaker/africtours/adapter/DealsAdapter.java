@@ -43,7 +43,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
                 //         TextView traveldeals = (TextView) findViewById(R.id.travel_deals);
                 TravelDeal travelDeal = snapshot.getValue(TravelDeal.class);
                 //        traveldeals.setText(traveldeals.getText() + "\n" + travelDeal.getTitle());
-//                Log.d("Deal: deal called", travelDeal.getTitle());
+//                Log.d("Deal: ", travelDeal.getTitle());
                 travelDeal.setId(snapshot.getKey());
                 deals.add(travelDeal);
                 notifyItemInserted(deals.size() - 1);
@@ -99,14 +99,20 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
     public class DealsViewHolder extends RecyclerView.ViewHolder {
 
         TextView travelsDealTitle;
+        TextView travelDealsDescription;
+        TextView travelDealsPrice;
 
         public DealsViewHolder(@NonNull View itemView) {
             super(itemView);
             travelsDealTitle = itemView.findViewById(R.id.traveldeal_title);
+            travelDealsDescription = itemView.findViewById(R.id.traveldeal_descrption);
+            travelDealsPrice = itemView.findViewById(R.id.traveldeal_price);
         }
 
         public void bind(TravelDeal deal) {
             travelsDealTitle.setText(deal.getTitle());
+            travelDealsPrice.setText(deal.getPrice());
+            travelDealsDescription.setText(deal.getDescription());
         }
     }
 }

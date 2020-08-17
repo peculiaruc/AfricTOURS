@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">AfricTOURS</string>
     <string name="save_menu">save</string>
-    <string name="description">Description</string>
     <string name="price">Price</string>
     <string name="deal_title">Deal Title</string>
+    <string name="description">Description</string>
+
+
 </resources>

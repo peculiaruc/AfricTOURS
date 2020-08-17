@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pecpaker.africtours.R;
@@ -20,12 +18,10 @@ public class InsertActivity extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    TextInputLayout textInputTitle;
-    TextInputLayout textInputPrice;
-    TextInputLayout textInputDescription;
-    TextInputEditText editTextTitle;
-    TextInputEditText editTextprice;
-    TextInputEditText editTextDescription;
+    EditText editTitle;
+    EditText editPrice;
+    EditText editDescription;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +31,10 @@ public class InsertActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
         databaseReference = FirebaseUtil.databaseReference;
 
-        textInputTitle = (TextInputLayout)findViewById(R.id.textInput_title);
-        textInputPrice = (TextInputLayout) findViewById(R.id.textInput_prize);
-        textInputDescription = (TextInputLayout) findViewById(R.id.textInput_description);
-        editTextDescription = findViewById(R.id.edit_description);
-        editTextprice = findViewById(R.id.edit_price);
-        editTextTitle = findViewById(R.id.edit_title);
+        editTitle = (EditText) findViewById(R.id.editTextTitle);
+        editPrice = (EditText) findViewById(R.id.editTextPrice);
+        editDescription = (EditText) findViewById(R.id.editTextDescription);
+
 
     }
 
@@ -59,19 +53,21 @@ public class InsertActivity extends AppCompatActivity {
     }
 
     private void clear() {
-        editTextTitle.setText("");
-        editTextprice.setText("");
-        editTextDescription.setText("");
+        editTitle.setText("");
+        editPrice.setText("");
+        editDescription.setText("");
+
+        editTitle.requestFocus();
 
     }
 
     private void saveDeal() {
 
-        String title = textInputTitle.getEditText().getText().toString();
-        String description = textInputDescription.getEditText().getText().toString();
-        String price = textInputPrice.getEditText().getText().toString();
+        String title = editTitle.getText().toString();
+        String description = editDescription.getText().toString();
+        String price = editPrice.getText().toString();
 
-        TravelDeal deal = new TravelDeal(title, description, price,"");
+        TravelDeal deal = new TravelDeal(title, description, price, "");
         databaseReference.push().setValue(deal);
     }
 
