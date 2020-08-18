@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
     private ChildEventListener childEventListener;
 
     public DealsAdapter() {
-        FirebaseUtil.openFirebaseReference("traveldeals");
+        // FirebaseUtil.openFirebaseReference("traveldeals");
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
 
         //call the deals from the Util class
@@ -40,12 +41,11 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String s) {
-                //         TextView traveldeals = (TextView) findViewById(R.id.travel_deals);
-                TravelDeal travelDeal = snapshot.getValue(TravelDeal.class);
-                //        traveldeals.setText(traveldeals.getText() + "\n" + travelDeal.getTitle());
-//                Log.d("Deal: ", travelDeal.getTitle());
-                travelDeal.setId(snapshot.getKey());
-                deals.add(travelDeal);
+
+                TravelDeal traveldeal = snapshot.getValue(TravelDeal.class);
+//                Log.d("Deal: ", traveldeal .getTitle());
+                traveldeal.setId(snapshot.getKey());
+                deals.add(traveldeal);
                 notifyItemInserted(deals.size() - 1);
 
             }
@@ -78,10 +78,10 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
     @NonNull
     @Override
     public DealsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        View itemView = LayoutInflater.from(context)
+        //     Context context = parent.getContext();
+        final View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.traveldeals_row, parent, false);
-        return new DealsViewHolder(itemView);
+        return new DealsViewHolder(view);
     }
 
     @Override
@@ -89,6 +89,10 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
 
         TravelDeal deal = deals.get(position);
         holder.bind(deal);
+//
+//        holder.travelsDealTitle.setText(position);
+//        holder.travelDealsDescription.setText(position);
+//        holder.travelDealsPrice.setText(position);
     }
 
     @Override
@@ -96,23 +100,30 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         return deals.size();
     }
 
-    public class DealsViewHolder extends RecyclerView.ViewHolder {
+    public class DealsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView travelsDealTitle;
         TextView travelDealsDescription;
         TextView travelDealsPrice;
+        ImageView imgDeal;
 
         public DealsViewHolder(@NonNull View itemView) {
             super(itemView);
-            travelsDealTitle = itemView.findViewById(R.id.traveldeal_title);
-            travelDealsDescription = itemView.findViewById(R.id.traveldeal_descrption);
-            travelDealsPrice = itemView.findViewById(R.id.traveldeal_price);
+            travelsDealTitle = (TextView) itemView.findViewById(R.id.traveldeal_title);
+            travelDealsDescription = (TextView) itemView.findViewById(R.id.traveldeal_descrption);
+            travelDealsPrice = (TextView) itemView.findViewById(R.id.traveldeal_price);
+            imgDeal = (ImageView) itemView.findViewById(R.id.imgDeals);
         }
 
         public void bind(TravelDeal deal) {
             travelsDealTitle.setText(deal.getTitle());
             travelDealsPrice.setText(deal.getPrice());
             travelDealsDescription.setText(deal.getDescription());
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }

@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.pecpaker.africtours.R;
 import com.pecpaker.africtours.util.FirebaseUtil;
 
-public class InsertActivity extends AppCompatActivity {
+public class DealActivity extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
