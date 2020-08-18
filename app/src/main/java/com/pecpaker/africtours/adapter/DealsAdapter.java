@@ -1,6 +1,7 @@
 package com.pecpaker.africtours.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pecpaker.africtours.R;
+import com.pecpaker.africtours.ui.DealActivity;
 import com.pecpaker.africtours.ui.TravelDeal;
 import com.pecpaker.africtours.util.FirebaseUtil;
 
@@ -40,12 +42,12 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         databaseReference = FirebaseUtil.databaseReference;
         childEventListener = new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String s) {
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                TravelDeal traveldeal = snapshot.getValue(TravelDeal.class);
-//                Log.d("Deal: ", traveldeal .getTitle());
-                traveldeal.setId(snapshot.getKey());
-                deals.add(traveldeal);
+                TravelDeal tdeal = snapshot.getValue(TravelDeal.class);
+//                Log.d("Deal ", tdeal.getTitle());
+                tdeal.setId(snapshot.getKey());
+                deals.add(tdeal);
                 notifyItemInserted(deals.size() - 1);
 
             }
@@ -113,6 +115,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
             travelDealsDescription = (TextView) itemView.findViewById(R.id.traveldeal_descrption);
             travelDealsPrice = (TextView) itemView.findViewById(R.id.traveldeal_price);
             imgDeal = (ImageView) itemView.findViewById(R.id.imgDeals);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(TravelDeal deal) {
@@ -123,7 +126,12 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
 
         @Override
         public void onClick(View view) {
-
+            int position = getAdapterPosition();
+            Log.d("Click ", String.valueOf(position));
+            TravelDeal selecteDeal = deals.get(position);
+            Intent intent = new Intent(view.getContext(), DealActivity.class);
+            intent.putExtra("Deal", selecteDeal);
+            view.getContext().startActivity(intent);
         }
     }
 }
