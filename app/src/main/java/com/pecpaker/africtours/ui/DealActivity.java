@@ -22,14 +22,14 @@ public class DealActivity extends AppCompatActivity {
     EditText editTitle;
     EditText editPrice;
     EditText editDescription;
-    TravelDeal deal;
+    TravelDeals deal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
 
-        FirebaseUtil.openFirebaseReference("traveldeals");
+        FirebaseUtil.openFirebaseReference("traveldeals", this);
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
         databaseReference = FirebaseUtil.databaseReference;
         editTitle = (EditText) findViewById(R.id.editTextTitle);
@@ -37,12 +37,12 @@ public class DealActivity extends AppCompatActivity {
         editDescription = (EditText) findViewById(R.id.editTextDescription);
 
         Intent intent = getIntent();
-        TravelDeal deal = (TravelDeal) intent.getSerializableExtra("Deal");
+        TravelDeals deal = (TravelDeals) intent.getSerializableExtra("Deal");
         if (deal == null) {
-            deal = new TravelDeal();
+            deal = new TravelDeals();
         }
         this.deal = deal;
-        editTitle.setText(deal.getTitle());
+        editTitle.setText((CharSequence) deal.getTitle());
         editDescription.setText(deal.getDescription());
         editPrice.setText(deal.getPrice());
         ;

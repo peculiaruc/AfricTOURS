@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +26,7 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
-    ArrayList<TravelDeal> deals;
+    ArrayList<TravelDeals> deals;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
@@ -67,7 +71,7 @@ public class ListActivity extends AppCompatActivity {
         databaseReference.addChildEventListener(childEventListener);
         */
 
-        FirebaseUtil.openFirebaseReference("traveldeals");
+        FirebaseUtil.openFirebaseReference("traveldeals", this);
         RecyclerView recyclerViewDeals = (RecyclerView) findViewById(R.id.recyclerViewDeals);
         final DealsAdapter adapter = new DealsAdapter();
         recyclerViewDeals.setAdapter(adapter);
@@ -91,7 +95,36 @@ public class ListActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, DealActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.log_out:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d("Logout ", "Logged out user");
+                                FirebaseUtil.attachListener();
+                            }
+                        });
+                FirebaseUtil.detachListener();
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FirebaseUtil.detachListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUtil.attachListener();
+    }
+
+    public void showMenu() {
+        invalidateOptionsMenu();
+
     }
 }

@@ -2,14 +2,14 @@ package com.pecpaker.africtours.ui;
 
 import java.io.Serializable;
 
-public class TravelDeal implements Serializable {
+public class TravelDeals implements Serializable {
     private String id;
     private String title;
     private String description;
     private String price;
     private String imageUrl;
 
-    public TravelDeal() {
+    public TravelDeals() {
 
     }
 
@@ -53,7 +53,7 @@ public class TravelDeal implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public TravelDeal(String title, String description, String price, String imageUrl) {
+    public TravelDeals(String title, String description, String price, String imageUrl) {
         this.title = title;
         this.description = description;
         this.price = price;

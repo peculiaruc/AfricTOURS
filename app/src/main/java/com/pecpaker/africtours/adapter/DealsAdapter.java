@@ -1,6 +1,5 @@
 package com.pecpaker.africtours.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,14 +19,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pecpaker.africtours.R;
 import com.pecpaker.africtours.ui.DealActivity;
-import com.pecpaker.africtours.ui.TravelDeal;
+import com.pecpaker.africtours.ui.TravelDeals;
 import com.pecpaker.africtours.util.FirebaseUtil;
 
 import java.util.ArrayList;
 
 public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHolder> {
 
-    ArrayList<TravelDeal> deals;
+    ArrayList<TravelDeals> deals;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
@@ -44,7 +43,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                TravelDeal tdeal = snapshot.getValue(TravelDeal.class);
+                TravelDeals tdeal = snapshot.getValue(TravelDeals.class);
 //                Log.d("Deal ", tdeal.getTitle());
                 tdeal.setId(snapshot.getKey());
                 deals.add(tdeal);
@@ -89,7 +88,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
     @Override
     public void onBindViewHolder(@NonNull DealsViewHolder holder, int position) {
 
-        TravelDeal deal = deals.get(position);
+        TravelDeals deal = deals.get(position);
         holder.bind(deal);
 //
 //        holder.travelsDealTitle.setText(position);
@@ -118,7 +117,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
             itemView.setOnClickListener(this);
         }
 
-        public void bind(TravelDeal deal) {
+        public void bind(TravelDeals deal) {
             travelsDealTitle.setText(deal.getTitle());
             travelDealsPrice.setText(deal.getPrice());
             travelDealsDescription.setText(deal.getDescription());
@@ -128,7 +127,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         public void onClick(View view) {
             int position = getAdapterPosition();
             Log.d("Click ", String.valueOf(position));
-            TravelDeal selecteDeal = deals.get(position);
+            TravelDeals selecteDeal = deals.get(position);
             Intent intent = new Intent(view.getContext(), DealActivity.class);
             intent.putExtra("Deal", selecteDeal);
             view.getContext().startActivity(intent);
