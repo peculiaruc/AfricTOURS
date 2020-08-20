@@ -85,6 +85,13 @@ public class ListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_activity, menu);
+        MenuItem insertmenu = menu.findItem(R.id.insert_menu);
+        if (FirebaseUtil.isAdnin == true) {
+            insertmenu.setVisible(true);
+        } else {
+            insertmenu.setVisible(false);
+        }
+
         return true;
     }
 

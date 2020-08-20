@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pecpaker.africtours.ui.ListActivity;
 import com.pecpaker.africtours.ui.TravelDeals;
 
 import java.util.ArrayList;
@@ -35,9 +36,9 @@ public class FirebaseUtil {
     private FirebaseUtil() {
     }
 
-    private static Activity caller;
+    private static ListActivity caller;
 
-    public static void openFirebaseReference(String ref, final Activity callerActivity) {
+    public static void openFirebaseReference(String ref, final ListActivity callerActivity) {
         if (firebaseUtil == null) {
             firebaseUtil = new FirebaseUtil();
             firebaseDatabase = FirebaseDatabase.getInstance();
@@ -70,7 +71,9 @@ public class FirebaseUtil {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 FirebaseUtil.isAdnin = true;
-                Log.d("Admin", "You are an Administrator");
+                caller.showMenu();
+
+//                Log.d("Admin", "You are an Administrator");
             }
 
             @Override
